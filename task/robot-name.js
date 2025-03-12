@@ -7,24 +7,29 @@ export class Robot {
     this._name = Robot.generateName();
   }
 
+  static namesArr = []
   static generateName() {
-    // function randomLetter() {
-    //   const randNum = Math.trunc(Math.random() * 100);
-    // if(randNum <= 65 || randNum >= 90) {
-    //   return randomLetter()
-    // } else {
-    //   return String.fromCharCode(randNum)
-    // }
-    // }
+    function randomLetter() {
+      const randNum = Math.trunc(Math.random() * 100);
+    if(randNum <= 65 || randNum >= 90) {
+      return randomLetter()
+    } else {
+      return String.fromCharCode(randNum)
+    }
+    }
     let res =``
-    for(let i = 0; i <= 2; i++){
+    for(let i = 0; i <= 4; i++){
       if(i <= 1) {
-        res += String.fromCharCode(Math.floor(Math.random() * (90 - 65 + 1)) + 65)
+        res += randomLetter()
       } else {
-        res += Math.trunc(Math.random() * 1000)
+        res += Math.trunc(Math.random() * 10)
       }
     }
+    if(this.namesArr.includes(res)) return this.generateName()
+    this.namesArr.push(res)
     return res;
+ 
+    
   }
 
   get name() {
@@ -39,11 +44,3 @@ export class Robot {
     
   }
 }
-
-let robot = new Robot()
-console.log(robot.name)
-// const random = (min, max) => {
-//   return String.fromCharCode(Math.floor(Math.random() * (max - min + 1)) + min);
-// }
-
-// console.log(random(65,90))
