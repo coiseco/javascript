@@ -3,12 +3,20 @@
 // convenience to get you started writing code faster.
 //
 
-export const valid = (el) => {
-  const string = el.replace(/\s/g, '');
-  if (string.match(/[^0-9]/g) || string.length <= 1) {
-    return false;
+export const valid = (el) => { 
+  const digArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const arrFrStr = el.replaceAll(' ', '').split('');
+  console.log('arrFrStr', arrFrStr)
+  let notDig = false;
+  for (let el of arrFrStr) {
+    if (digArr.includes(el)) {
+      notDig = true
+    }
   }
-  const arrFrStr = string.split('');
+  console.log('notdig', notDig)
+  if(arrFrStr.length <= 1 || notDig){
+    return false
+  }
   for (let i = arrFrStr.length - 2; i >= 0; i -= 2) {
     if (arrFrStr[i] * 2 > 9) {
       arrFrStr[i] = arrFrStr[i] * 2 - 9;
@@ -24,3 +32,5 @@ export const valid = (el) => {
   }
 
 };
+
+console.log('function', valid('091'))
