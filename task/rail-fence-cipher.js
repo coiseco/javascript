@@ -96,4 +96,3 @@ export const decode = (phraze, rails) => {
   return resString
 }
 
-console.log(decode('TEITELHDVLSNHDTISEIIEA', 3))
